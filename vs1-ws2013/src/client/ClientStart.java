@@ -10,7 +10,7 @@ package client;
 public class ClientStart {
 	
 	private static ClientStart client;
-	private static final int NULL = 0;
+	private static final int BEENDEN = 0;
 	
 	private int auswahl;
 	/**
@@ -19,13 +19,15 @@ public class ClientStart {
 	 */
 	public static void main(String[] args) {
 		client = new ClientStart();
-		
-		while(auswahl != NULL){
+		client.start();
+	}
+	
+	private void start(){
+		while(auswahl != BEENDEN){
 			client.printMenue();
 			client.auswahlEinlesen();
 			client.ausfuehren();
 		}
-
 	}
 	private void printMenue(){
 		// TODO Menueausgabe
