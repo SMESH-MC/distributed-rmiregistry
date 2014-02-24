@@ -22,6 +22,13 @@ public class ClientStart {
 		client.start();
 	}
 	
+	/**
+	 * Konstruktor des Programmstarters
+	 */
+	public ClientStart(){
+		auswahl = -1;
+	}
+	
 	private void start(){
 		while(auswahl != BEENDEN){
 			client.printMenue();
