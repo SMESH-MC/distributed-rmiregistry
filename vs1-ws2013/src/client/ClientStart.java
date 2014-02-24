@@ -34,7 +34,7 @@ public class ClientStart {
 		while(auswahl != BEENDEN){
 			client.printMenue();
 			client.auswahlEinlesen();
-			client.ausfuehren();
+			client.ausfuehren(auswahl);
 		}
 	}
 	private void printMenue(){
@@ -45,7 +45,7 @@ public class ClientStart {
 		// TODO Einlesen der benutzerauswahl
 	}
 	
-	private String ausfuehren(){
+	private String ausfuehren(int auswahl){
 		// TODO Abschicken der auswahl und Ausgabe des Ergebnisses
 		return null;
 	}
