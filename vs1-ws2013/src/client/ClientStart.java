@@ -4,6 +4,7 @@
 package client;
 
 /**
+ * Klasse ClientStart dient als Startpunkt fuer das Clientprogramm.
  * @author Thorsten
  *
  */
