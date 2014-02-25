@@ -9,11 +9,15 @@ package client;
  *
  */
 public class ClientStart {
-	
+	//--------------Klassenkonstanten
 	private static ClientStart client;
 	private static final int BEENDEN = 0;
 	
+	//--------------Stringkonstanten
+	
+	//--------------Variablen
 	private int auswahl;
+	
 	/**
 	 * Startpunkt fuer den Client.
 	 * @param args
@@ -45,8 +49,7 @@ public class ClientStart {
 		// TODO Einlesen der benutzerauswahl
 	}
 	
-	private String ausfuehren(int auswahl){
+	private void ausfuehren(int auswahl){
 		// TODO Abschicken der auswahl und Ausgabe des Ergebnisses
-		return null;
 	}
 }
