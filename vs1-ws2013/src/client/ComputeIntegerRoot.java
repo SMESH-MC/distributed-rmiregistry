@@ -11,7 +11,7 @@ import exceptions.ParameterException;
  * @author Thorsten
  *
  */
-public class ComputeRoot implements Task<Integer>, Serializable{
+public class ComputeIntegerRoot implements Task<Integer>, Serializable{
 
 	private static final long serialVersionUID = 1517373870379096195L;
 
@@ -22,7 +22,7 @@ public class ComputeRoot implements Task<Integer>, Serializable{
 	 * @param operator
 	 * @throws ParameterException 
 	 */
-	public ComputeRoot(int operator) throws ParameterException {
+	public ComputeIntegerRoot(int operator) throws ParameterException {
 		super();
 		if (operator < 0){throw new ParameterException();}
 		this.operator = operator;
