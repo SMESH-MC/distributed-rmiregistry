@@ -25,14 +25,13 @@ public class ComputeRoot implements Task<Integer>, Serializable{
 	public ComputeRoot(int operator) throws ParameterException {
 		super();
 		if (operator < 0){throw new ParameterException();}
-		this.operator = (int) Math.sqrt(operator);
+		this.operator = operator;
 	}
 
 
 	@Override
 	public Integer execute() {
-		// TODO Berechnung der Wurzel einfuegen
-		return null;
+		return (int) Math.sqrt(operator);
 	}
 
 }
