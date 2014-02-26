@@ -14,6 +14,8 @@ import exceptions.ParameterException;
 public class ComputeIntegerRoot implements Task<Integer>, Serializable{
 
 	private static final long serialVersionUID = 1517373870379096195L;
+	
+	private static final String OPERATOR = "Operator muss groesser 0 sein!";
 
 	private int operator;
 	
@@ -24,7 +26,7 @@ public class ComputeIntegerRoot implements Task<Integer>, Serializable{
 	 */
 	public ComputeIntegerRoot(int operator) throws ParameterException {
 		super();
-		if (operator < 0){throw new ParameterException();}
+		if (operator < 0){throw new ParameterException(OPERATOR);}
 		this.operator = operator;
 	}
 
