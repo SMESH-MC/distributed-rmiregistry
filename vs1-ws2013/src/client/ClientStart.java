@@ -24,6 +24,9 @@ public class ClientStart {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		if (System.getSecurityManager() == null) {
+            System.setSecurityManager(new SecurityManager());
+        }
 		client = new ClientStart();
 		client.start();
 	}
