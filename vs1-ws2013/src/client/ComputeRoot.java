@@ -25,7 +25,7 @@ public class ComputeRoot implements Task<Integer>, Serializable{
 	public ComputeRoot(int operator) throws ParameterException {
 		super();
 		if (operator < 0){throw new ParameterException();}
-		this.operator = operator;
+		this.operator = (int) Math.sqrt(operator);
 	}
 
 
