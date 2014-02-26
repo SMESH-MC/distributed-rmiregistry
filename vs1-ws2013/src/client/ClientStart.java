@@ -67,13 +67,13 @@ public class ClientStart {
 		// TODO Abschicken der auswahl und Ausgabe des Ergebnisses
 		switch(auswahl)
         {
-        case BEENDEN:
-            System.out.println("Das Programm wird beendet");
-            break;
-        
-        default:
-            System.out.println("Fehleingabe");
-            break;
-        }
+            case BEENDEN:
+                System.out.println("Das Programm wird beendet");
+                break;
+
+            default:
+                System.out.println("Fehleingabe");
+                break;
+            }
 	}
 }
