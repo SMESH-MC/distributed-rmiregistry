@@ -7,7 +7,7 @@
 package client;
 
 /**
- *
+ * Interface fuer Remote-Tasks
  * @author Arax
  */
 public interface Task<T> {
