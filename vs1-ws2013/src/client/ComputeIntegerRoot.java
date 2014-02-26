@@ -15,25 +15,25 @@ public class ComputeIntegerRoot implements Task<Integer>, Serializable{
 
 	private static final long serialVersionUID = 1517373870379096195L;
 	
-	private static final String OPERATOR = "Operator muss groesser 0 sein!";
+	private static final String OPERAND = "Operator muss groesser 0 sein!";
 
-	private int operator;
+	private int operand;
 	
 	/**
 	 * Konstuktor mit erwartetem Operator
 	 * @param operator
 	 * @throws ParameterException 
 	 */
-	public ComputeIntegerRoot(int operator) throws ParameterException {
+	public ComputeIntegerRoot(int operand) throws ParameterException {
 		super();
-		if (operator < 0){throw new ParameterException(OPERATOR);}
-		this.operator = operator;
+		if (operand < 0){throw new ParameterException(OPERAND);}
+		this.operand = operand;
 	}
 
 
 	@Override
 	public Integer execute() {
-		return (int) Math.sqrt(operator);
+		return (int) Math.sqrt(operand);
 	}
 
 }
