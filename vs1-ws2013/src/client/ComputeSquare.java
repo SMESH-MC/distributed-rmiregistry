@@ -3,12 +3,12 @@ package client;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class ComputeSquere extends UnicastRemoteObject 
-							implements ComputeSquereInterface {
+public class ComputeSquare extends UnicastRemoteObject 
+							implements ComputeSquareInterface {
 
 	private static final long serialVersionUID = 7452870205251216131L;
 
-	public ComputeSquere() throws RemoteException {
+	public ComputeSquare() throws RemoteException {
 	}
 
 	@Override
