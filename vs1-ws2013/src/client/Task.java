@@ -6,10 +6,13 @@
 
 package client;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 /**
  * Interface fuer Remote-Tasks
  * @author Arax
  */
-public interface Task<T> {
-    T execute();
+public interface Task<T> extends Remote{
+    T execute() throws RemoteException;
 }
