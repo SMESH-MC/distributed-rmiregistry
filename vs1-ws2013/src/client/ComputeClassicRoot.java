@@ -32,7 +32,7 @@ public class ComputeClassicRoot implements Task<Double>, Serializable{
 
 
 	@Override
-	public double execute() {
+	public Double execute() {
 		return Math.sqrt(operand);
 	}
 
