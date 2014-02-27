@@ -21,7 +21,7 @@ public class ComputeClassicRoot implements Task<Double>, Serializable{
 	
 	/**
 	 * Konstuktor mit erwartetem Operator
-	 * @param operator
+	 * @param operand
 	 * @throws ParameterException 
 	 */
 	public ComputeClassicRoot(double operand) throws ParameterException {
