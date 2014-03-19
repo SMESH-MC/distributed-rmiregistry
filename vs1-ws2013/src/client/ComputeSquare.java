@@ -1,10 +1,9 @@
 package client;
 
+import compute.*;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 
-public class ComputeSquare extends UnicastRemoteObject 
-							implements Task<Integer> {
+public class ComputeSquare implements Task{
 
 	private static final long serialVersionUID = 7452870205251216131L;
 
@@ -14,8 +13,7 @@ public class ComputeSquare extends UnicastRemoteObject
 		this.zahl = zahl;
 	}
 
-	@Override
-	public Integer execute() throws RemoteException {
+	public Object execute(){
 		return zahl * zahl;
 	}
 }

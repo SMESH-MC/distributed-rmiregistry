@@ -3,6 +3,7 @@
  */
 package client;
 
+import compute.*;
 import java.io.Serializable;
 
 import exceptions.ParameterException;
@@ -11,7 +12,7 @@ import exceptions.ParameterException;
  * @author derb
  *
  */
-public class ComputeClassicRoot implements Task<Double>, Serializable{
+public class ComputeClassicRoot implements Task{
 
 	private static final long serialVersionUID = 1517373870379096195L;
 	
@@ -32,7 +33,7 @@ public class ComputeClassicRoot implements Task<Double>, Serializable{
 
 
 	@Override
-	public Double execute() {
+	public Object execute() {
 		return Math.sqrt(operand);
 	}
 

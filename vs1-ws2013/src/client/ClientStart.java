@@ -4,6 +4,7 @@
 package client;
 
 import de.htw.saarland.stl.*;
+import compute.*;
 /**
  * Klasse ClientStart dient als Startpunkt fuer das Clientprogramm.
  * @author Thorsten

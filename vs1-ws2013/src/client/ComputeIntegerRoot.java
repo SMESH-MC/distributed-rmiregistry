@@ -3,15 +3,14 @@
  */
 package client;
 
-import java.io.Serializable;
-
+import compute.*;
 import exceptions.ParameterException;
 
 /**
  * @author Thorsten
  *
  */
-public class ComputeIntegerRoot implements Task<Integer>, Serializable{
+public class ComputeIntegerRoot implements Task {
 
 	private static final long serialVersionUID = 1517373870379096195L;
 	
@@ -32,7 +31,7 @@ public class ComputeIntegerRoot implements Task<Integer>, Serializable{
 
 
 	@Override
-	public Integer execute() {
+	public Object execute() {
 		return (int) Math.sqrt(operand);
 	}
 

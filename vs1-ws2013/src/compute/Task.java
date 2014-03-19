@@ -4,15 +4,12 @@
  * and open the template in the editor.
  */
 
-package client;
-
-import java.rmi.Remote;
-import java.rmi.RemoteException;
-
+package compute;
+import java.io.Serializable;
 /**
- * Interface fuer Remote-Tasks
+ *
  * @author Arax
  */
-public interface Task<T> extends Remote{
-    T execute() throws RemoteException;
+public interface Task extends Serializable{
+    Object execute();
 }

@@ -3,23 +3,21 @@
  */
 package client;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
+import compute.*;
 import java.util.Date;
 
 /**
  * @author Thorsten
  *
  */
-public class ServerZeit extends UnicastRemoteObject implements Task<Date> {
+public class ServerZeit implements Task {
 
 	private static final long serialVersionUID = 5598061061413974590L;
 
-	protected ServerZeit() throws RemoteException {
+	protected ServerZeit() {
 	}
-
-	@Override
-	public Date execute() throws RemoteException {
+        
+	public Object execute() {
 		return new Date();
 	}
 
