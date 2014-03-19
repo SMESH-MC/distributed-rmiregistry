@@ -20,7 +20,8 @@ public class Server extends UnicastRemoteObject implements Compute {
 
 	public Object executeTask(Task t) throws RemoteException {
                 String tName = t.taskName();
-                System.out.println(tName+"\nBerechnung erfolgreich");
+                int ID =t.getClientID();
+                System.out.println("Client-ID: "+ID+"\n"+tName+"\nBerechnung erfolgreich");
 		return t.execute();
 	}
 	

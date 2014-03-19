@@ -7,18 +7,29 @@ public class ComputeSquare implements Task{
 
 	private static final long serialVersionUID = 7452870205251216131L;
 
-	private int zahl;
+	private double operand;
+        private int ID;
 	
-	public ComputeSquare(int zahl) throws RemoteException {
-		this.zahl = zahl;
+	public ComputeSquare(double operand) throws RemoteException {
+		this.operand = operand;
 	}
 
 	public Object execute(){
-		return zahl * zahl;
+		return operand * operand;
 	}
 
     @Override
     public String taskName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Quadrat aus " + operand + " berechnen...";
+    }
+
+    @Override
+    public int getClientID() {
+        return ID;
+    }
+
+    @Override
+    public void setClientID(int ID) {
+        this.ID = ID;
     }
 }

@@ -16,14 +16,15 @@ public class ComputeIntegerRoot implements Task {
 	
 	private static final String OPERAND = "Operator muss groesser 0 sein!";
 
-	private int operand;
+	private double operand;
+        private int ID;
 	
 	/**
 	 * Konstuktor mit erwartetem Operator
 	 * @param operator
 	 * @throws ParameterException 
 	 */
-	public ComputeIntegerRoot(int operand) throws ParameterException {
+	public ComputeIntegerRoot(double operand) throws ParameterException {
 		super();
 		if (operand < 0){throw new ParameterException(OPERAND);}
 		this.operand = operand;
@@ -37,7 +38,17 @@ public class ComputeIntegerRoot implements Task {
 
     @Override
     public String taskName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "Wurzel als Integer aus " + operand + " berechnen...";
+    }
+
+    @Override
+    public int getClientID() {
+        return ID;
+    }
+
+    @Override
+    public void setClientID(int ID) {
+        this.ID = ID;
     }
 
 }

@@ -13,4 +13,6 @@ import java.io.Serializable;
 public interface Task extends Serializable{
     String taskName();
     Object execute();
+    int getClientID();
+    void setClientID(int ID);
 }
