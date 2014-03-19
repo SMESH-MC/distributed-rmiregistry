@@ -35,4 +35,9 @@ public class ComputeIntegerRoot implements Task {
 		return (int) Math.sqrt(operand);
 	}
 
+    @Override
+    public String taskName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
