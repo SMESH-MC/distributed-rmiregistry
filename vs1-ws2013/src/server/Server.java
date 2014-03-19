@@ -1,9 +1,11 @@
 package server;
 
+import compute.Compute;
+import compute.Task;
+import java.net.InetAddress;
 import java.rmi.*;
-import java.rmi.server.*;
-import java.net.*;
-import compute.*;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.server.UnicastRemoteObject;
 
 public class Server extends UnicastRemoteObject implements Compute {
 
@@ -12,11 +14,10 @@ public class Server extends UnicastRemoteObject implements Compute {
 	 */
 	private static final long serialVersionUID = 2576772980585139227L;
 
-	protected Server() throws RemoteException {
+	public Server() throws RemoteException {
 		super();
 	}
 
-	@Override
 	public Object executeTask(Task t) throws RemoteException {
 		return t.execute();
 	}
@@ -34,14 +35,15 @@ public class Server extends UnicastRemoteObject implements Compute {
 		}
 	}
 	
-	public static void main(String[] args) {
-		if (System.getSecurityManager() == null) {
+	public static void main(String[] args) throws RemoteException {
+		/*if (System.getSecurityManager() == null) {
+                    
 			System.setSecurityManager(new RMISecurityManager());
-		}
-		
-		try {
+		}*/
+		LocateRegistry.createRegistry(1099);
+		try {//+ ((Server) server).getServerAdress() +"
 			Compute server = new Server();
-			String name = "rmi://" + ((Server) server).getServerAdress() +"/Compute";
+			String name = "rmi://127.0.0.1:1099/Compute";
 			Naming.rebind(name, server);
 			System.out.println("Server bound");
 		}
