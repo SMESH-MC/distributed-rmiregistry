@@ -106,13 +106,13 @@ public class ClientStart {
                 
             case INTROOT:
                 operand = Stdin.readlnDouble("Bitte Operand eingeben");
-                double introot = computeRoot(operand);
+                double introot = computeIntRoot(operand);
                 System.out.println("Der Ganzzahl-Anteil der Wurzel aus " + operand + " ist " + introot);
                 break;
 
             case SQUARE:
                 operand = Stdin.readlnDouble("Bitte Operand eingeben");
-                double square = computeRoot(operand);
+                double square = computeSquare(operand);
                 System.out.println("Das Quadrat von " + operand + " ist " + square);
                 break;
                 
