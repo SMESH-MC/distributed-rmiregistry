@@ -25,7 +25,7 @@ public class Server extends UnicastRemoteObject implements Compute {
 		return t.execute();
 	}
 	
-	private String getServerAdress() {
+	private static String getServerAdress() {
 		String adress;
 		try {
 			adress = (InetAddress.getLocalHost()).toString();
@@ -45,6 +45,8 @@ public class Server extends UnicastRemoteObject implements Compute {
 		}*/
 		LocateRegistry.createRegistry(1099);
 		try {//+ ((Server) server).getServerAdress() +"
+                        String adress = getServerAdress();
+                        System.out.println(adress);
 			Compute server = new Server();
 			String name = "rmi://127.0.0.1:1099/Compute";
 			Naming.rebind(name, server);
