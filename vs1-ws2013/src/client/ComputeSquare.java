@@ -16,4 +16,9 @@ public class ComputeSquare implements Task{
 	public Object execute(){
 		return zahl * zahl;
 	}
+
+    @Override
+    public String taskName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

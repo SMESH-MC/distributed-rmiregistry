@@ -30,11 +30,18 @@ public class ComputeClassicRoot implements Task{
 		if (operand < 0){throw new ParameterException(OPERAND);}
 		this.operand = operand;
 	}
-
+        
+        
 
 	@Override
 	public Object execute() {
 		return Math.sqrt(operand);
 	}
 
+    @Override
+    public String taskName() {
+        return "Wurzel aus "+operand+" berechnen...";
+    }
+        
+        
 }

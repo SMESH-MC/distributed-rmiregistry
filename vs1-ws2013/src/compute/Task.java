@@ -11,5 +11,6 @@ import java.io.Serializable;
  * @author Arax
  */
 public interface Task extends Serializable{
+    String taskName();
     Object execute();
 }
