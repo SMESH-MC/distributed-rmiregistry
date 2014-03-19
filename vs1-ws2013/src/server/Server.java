@@ -25,7 +25,7 @@ public class Server extends UnicastRemoteObject implements Compute {
 		return t.execute();
 	}
 	
-	private static String getServerAdress() {
+	private static String getServerAdress_full() {
 		String adress;
 		try {
 			adress = (InetAddress.getLocalHost()).toString();
@@ -37,6 +37,20 @@ public class Server extends UnicastRemoteObject implements Compute {
 			return null;
 		}
 	}
+        
+        private static String getServerAdress() {
+            	String adress;
+		try {
+			adress = (InetAddress.getLocalHost()).toString();
+                        String[] parts = adress.split("/");
+			return parts[1];
+		}
+		catch (Exception e) {
+			System.err.println("Server exception: " + e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+        }
 	
 	public static void main(String[] args) throws RemoteException {
 		/*if (System.getSecurityManager() == null) {
@@ -45,8 +59,10 @@ public class Server extends UnicastRemoteObject implements Compute {
 		}*/
 		LocateRegistry.createRegistry(1099);
 		try {//+ ((Server) server).getServerAdress() +"
-                        String adress = getServerAdress();
-                        System.out.println(adress);
+                        String adress = getServerAdress_full();
+                        System.out.println("Volle Adresse: " + adress);
+                        adress = getServerAdress();
+                        System.out.println("IP only: " + adress);
 			Compute server = new Server();
 			String name = "rmi://127.0.0.1:1099/Compute";
 			Naming.rebind(name, server);
