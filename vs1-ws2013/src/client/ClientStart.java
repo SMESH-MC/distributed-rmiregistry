@@ -3,8 +3,9 @@
  */
 package client;
 
-import de.htw.saarland.stl.*;
 import compute.*;
+import de.htw.saarland.stl.*;
+import java.rmi.*;
 /**
  * Klasse ClientStart dient als Startpunkt fuer das Clientprogramm.
  * @author Thorsten
@@ -25,18 +26,30 @@ public class ClientStart {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		if (System.getSecurityManager() == null) {
+	/*	if (System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());
-        }
+        }*/
 		client = new ClientStart();
 		client.start();
 	}
+    private String[] args;
 	
 	/**
 	 * Konstruktor des Programmstarters
 	 */
 	public ClientStart(){
 		auswahl = -1;
+                try{
+                   String name = "//127.0.0.1:1099/Compute";
+                   Compute comp = (Compute) Naming.lookup(name);
+                   ComputeClassicRoot task;
+                    task = new ComputeClassicRoot(25);
+                    Double root = (double) (comp.executeTask(task));
+                    System.out.println(root);
+                }
+                catch(Exception ex){
+                    ex.printStackTrace();
+                }
 	}
 	
 	private void start(){
