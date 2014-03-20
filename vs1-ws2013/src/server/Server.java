@@ -4,73 +4,64 @@ import compute.Compute;
 import compute.Task;
 import java.net.InetAddress;
 import java.rmi.*;
-import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 
+/**
+ * Computeserver Klasse
+ * @author C.Schuetz
+ */
+
 public class Server extends UnicastRemoteObject implements Compute {
+    
+    private String serverAddr;
+    
+    private static final long serialVersionUID = 2576772980585139227L;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2576772980585139227L;
+    /**
+     * Konstruktor, ermittelt die IP Adresse
+     * @throws RemoteException 
+     */
+    public Server() throws RemoteException {
+	super();
+        this.serverAddr = this.locateServerAdress();
+    }
 
-	public Server() throws RemoteException {
-		super();
+    /**
+     * execute Methode
+     * @param t auszufuehrender Task
+     * @return Ergebnis des Tasks
+     * @throws RemoteException 
+     */
+    public Object executeTask(Task t) throws RemoteException {
+        String tName = t.taskName();
+        int ID =t.getClientID();
+        System.out.println("Client-ID: "+ID+"\n"+tName+"\nBerechnung erfolgreich");
+	return t.execute();
+    }
+       
+    /**
+     * ermittelt die lokale Server IP
+     * @return Server IP
+     */
+    public String locateServerAdress() {
+        String adress;
+	try {
+            adress = (InetAddress.getLocalHost()).toString();
+            String[] parts = adress.split("/");
+            return parts[1];
 	}
-
-	public Object executeTask(Task t) throws RemoteException {
-                String tName = t.taskName();
-                int ID =t.getClientID();
-                System.out.println("Client-ID: "+ID+"\n"+tName+"\nBerechnung erfolgreich");
-		return t.execute();
+	catch (Exception e) {
+            System.err.println("Server exception: " + e.getMessage());
+            e.printStackTrace();
+            return null;
 	}
-	
-	private static String getServerAdress_full() {
-		String adress;
-		try {
-			adress = (InetAddress.getLocalHost()).toString();
-			return adress;
-		}
-		catch (Exception e) {
-			System.err.println("Server exception: " + e.getMessage());
-			e.printStackTrace();
-			return null;
-		}
-	}
+    }
         
-        private static String getServerAdress() {
-            	String adress;
-		try {
-			adress = (InetAddress.getLocalHost()).toString();
-                        String[] parts = adress.split("/");
-			return parts[1];
-		}
-		catch (Exception e) {
-			System.err.println("Server exception: " + e.getMessage());
-			e.printStackTrace();
-			return null;
-		}
-        }
-	
-	public static void main(String[] args) throws RemoteException {
-		/*if (System.getSecurityManager() == null) {
-                    
-			System.setSecurityManager(new RMISecurityManager());
-		}*/
-		LocateRegistry.createRegistry(1099);
-		try {//+ ((Server) server).getServerAdress() +"
-                        String adress = getServerAdress_full();
-                        System.out.println("Volle Adresse: " + adress);
-                        adress = getServerAdress();
-                        System.out.println("IP only: " + adress);
-			Compute server = new Server();
-			String name = "rmi://127.0.0.1:1099/Compute";
-			Naming.rebind(name, server);
-			System.out.println("Server bound");
-		}
-		catch(Exception e) {
-			System.err.println("Server exception: " + e.getMessage());
-			e.printStackTrace();
-		}
-	}
+    /**
+     * Getter fuer die Server IP
+     * @return Server IP
+     */
+    public String getServerAddr() {
+        return this.serverAddr;
+    }
 }
