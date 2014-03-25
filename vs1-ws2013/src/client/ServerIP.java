@@ -11,16 +11,16 @@ package client;
  */
 public class ServerIP {
 
-    private String name;
+    private String domain;
     private String adresse;
 
-    public ServerIP(String name, String adresse) {
-        this.name = name;
+    public ServerIP(String domain, String adresse) {
+        this.domain = domain;
         this.adresse = adresse;
     }
     
-    public String getName(){
-        return name;
+    public String getDomain(){
+        return domain;
     }
     
     public String getAdresse(){
