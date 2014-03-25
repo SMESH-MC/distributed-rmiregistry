@@ -54,7 +54,7 @@ public class ClientStart {
      * Konstruktor des Programmstarters
      */
     public ClientStart() {
-        serverList = client.readDomainFile();
+        serverList = readDomainFile();
         int size = serverList.size();
         int counter = 0;
         auswahl = -1;
@@ -167,6 +167,7 @@ public class ClientStart {
     }
 
     private ArrayList readDomainFile() {
+        System.out.println(new File("").getAbsolutePath());
         String fileName = "domain.ini";
         String[] lineArray;
         ArrayList serverList = new ArrayList();
