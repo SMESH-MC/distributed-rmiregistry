@@ -8,6 +8,9 @@ import de.htw.saarland.stl.*;
 import exceptions.ParameterException;
 import java.rmi.*;
 import java.math.*;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Klasse ClientStart dient als Startpunkt fuer das Clientprogramm.
@@ -28,7 +31,7 @@ public class ClientStart {
     //--------------Variablen
     private int auswahl;
     private Compute comp;
-
+    private static ArrayList serverList;
     /**
      * Startpunkt fuer den Client.
      *
@@ -41,6 +44,7 @@ public class ClientStart {
         ID = calculateID();
         System.out.println("Client-ID: " + ID);
         client = new ClientStart();
+        serverList = client.readDomainFile();
         client.start();
     }
     private String[] args;
@@ -103,7 +107,7 @@ public class ClientStart {
                 double root = computeRoot(operand);
                 System.out.println("Wurzel aus " + operand + " ist " + root);
                 break;
-                
+
             case INTROOT:
                 operand = Stdin.readlnDouble("Bitte Operand eingeben");
                 double introot = computeIntRoot(operand);
@@ -115,7 +119,7 @@ public class ClientStart {
                 double square = computeSquare(operand);
                 System.out.println("Das Quadrat von " + operand + " ist " + square);
                 break;
-                
+
             case BEENDEN:
                 System.out.println("Das Programm wird beendet");
                 break;
@@ -149,4 +153,30 @@ public class ClientStart {
         Double square = (double) (comp.executeTask(task));
         return square;
     }
+
+    private ArrayList readDomainFile() {
+        String fileName = "domain.ini";
+        String LS = System.getProperty("line.separator");
+        StringBuffer fileContent = new StringBuffer();
+        String[] lineArray;
+        ArrayList serverList = new ArrayList();
+        try {
+            FileReader fr = new FileReader(fileName);
+            BufferedReader reader = new BufferedReader(fr);
+
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                lineArray = line.split("|");
+                for (int i = 1; i < lineArray.length; i++) {
+                    ServerIP newServer = new ServerIP(lineArray[0], lineArray[i]);
+                    serverList.add(newServer);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return serverList;
+    }
+
 }
