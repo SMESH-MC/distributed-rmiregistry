@@ -53,12 +53,17 @@ public class ClientStart {
      */
     public ClientStart() {
         serverList = client.readDomainFile();
+        int size = serverList.size();
+        int counter = 0;
         auswahl = -1;
-        try {
-            String name = "//127.0.0.1:1099/Compute";
-            comp = (Compute) Naming.lookup(name);
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        while (comp == null && counter < size) {
+            try {
+                String name = "//127.0.0.1:1099/Compute";
+                comp = (Compute) Naming.lookup(name);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            ++counter;
         }
     }
 
