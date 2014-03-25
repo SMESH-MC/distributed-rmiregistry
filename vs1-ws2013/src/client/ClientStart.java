@@ -58,8 +58,10 @@ public class ClientStart {
         auswahl = -1;
         while (comp == null && counter < size) {
             try {
-                String name = "//127.0.0.1:1099/Compute";
-                comp = (Compute) Naming.lookup(name);
+                //String name = "//127.0.0.1:1099/Compute";
+                ServerIP server = (ServerIP) serverList.get(counter);
+                String serverAdress = server.getAdresse();
+                comp = (Compute) Naming.lookup(serverAdress);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
