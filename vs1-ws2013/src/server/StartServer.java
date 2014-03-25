@@ -38,8 +38,9 @@ public class StartServer {
             }
             this.server = new Server();
             this.stub = (Compute) this.server;
-            this.name= "rmi://127.0.0.1:1099/Compute";
-            System.out.println("Server IP: " + this.server.getServerAddr());
+            String ip = this.server.getServerAddr();
+            this.name= "rmi://127.0.0.1:1099/Compute";  // this.name = "rmi://" + ip + ":1099/Compute"; <- live line
+            System.out.println("Server IP: " + ip);
             Naming.rebind(this.name, this.stub);
             System.out.println("Server bound");
             System.out.println("Server gestartet");
