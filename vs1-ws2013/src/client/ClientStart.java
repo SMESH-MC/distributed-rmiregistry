@@ -63,6 +63,7 @@ public class ClientStart {
                 //String name = "//127.0.0.1:1099/Compute";
                 server = (ServerIP) serverList.get(counter);
                 String serverAdress = server.getAdresse();
+                System.out.println(serverAdress);
                 String name = "//" + serverAdress + "/Compute";
                 comp = (Compute) Naming.lookup(name);
             } catch (Exception ex) {
@@ -176,7 +177,7 @@ public class ClientStart {
             BufferedReader reader = new BufferedReader(fr);
             String line;
             while ((line = reader.readLine()) != null) {
-                lineArray = line.split("|");
+                lineArray = line.split(",");
                 for (int i = 1; i < lineArray.length; i++) {
                     ServerIP newServer = new ServerIP(lineArray[0], lineArray[i]);
                     serverList.add(newServer);
