@@ -31,7 +31,8 @@ public class ClientStart {
     //--------------Variablen
     private int auswahl;
     private Compute comp;
-    private static ArrayList serverList;
+    private ArrayList serverList;
+
     /**
      * Startpunkt fuer den Client.
      *
@@ -44,15 +45,14 @@ public class ClientStart {
         ID = calculateID();
         System.out.println("Client-ID: " + ID);
         client = new ClientStart();
-        serverList = client.readDomainFile();
         client.start();
     }
-    private String[] args;
 
     /**
      * Konstruktor des Programmstarters
      */
     public ClientStart() {
+        serverList = client.readDomainFile();
         auswahl = -1;
         try {
             String name = "//127.0.0.1:1099/Compute";
@@ -154,16 +154,12 @@ public class ClientStart {
 
     private ArrayList readDomainFile() {
         String fileName = "domain.ini";
-        String LS = System.getProperty("line.separator");
-        StringBuffer fileContent = new StringBuffer();
         String[] lineArray;
         ArrayList serverList = new ArrayList();
         try {
             FileReader fr = new FileReader(fileName);
             BufferedReader reader = new BufferedReader(fr);
-
             String line;
-
             while ((line = reader.readLine()) != null) {
                 lineArray = line.split("|");
                 for (int i = 1; i < lineArray.length; i++) {
