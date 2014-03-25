@@ -26,12 +26,14 @@ public class ClientStart {
     private static final int ROOT = 1;
     private static final int INTROOT = 2;
     private static final int SQUARE = 3;
+    private static final int PRINT_DOMAIN = 4;
     private static int ID;
     //--------------Stringkonstanten
     //--------------Variablen
     private int auswahl;
     private Compute comp;
     private ArrayList serverList;
+    private ServerIP server;
 
     /**
      * Startpunkt fuer den Client.
@@ -59,9 +61,10 @@ public class ClientStart {
         while (comp == null && counter < size) {
             try {
                 //String name = "//127.0.0.1:1099/Compute";
-                ServerIP server = (ServerIP) serverList.get(counter);
+                server = (ServerIP) serverList.get(counter);
                 String serverAdress = server.getAdresse();
-                comp = (Compute) Naming.lookup(serverAdress);
+                String name = "//" + serverAdress + "/Compute";
+                comp = (Compute) Naming.lookup(name);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -89,6 +92,7 @@ public class ClientStart {
         menue.append(INTROOT + ": Ganzzahl-Anteil einer Wurzel berechnen " + "\n");
         menue.append(SQUARE + ": Quadrat berechnen " + "\n");
         menue.append(BEENDEN + ": Beenden " + "\n");
+        menue.append(PRINT_DOMAIN + ": Domäne anzeigen " + "\n");
         menue.append(" -> ");
         System.out.print(menue);
     }
@@ -128,7 +132,10 @@ public class ClientStart {
             case BEENDEN:
                 System.out.println("Das Programm wird beendet");
                 break;
-
+            case PRINT_DOMAIN:
+                System.out.println("Client greift auf folgende Domäne zu: \n"
+                        + server.getDomain());
+                break;
             default:
                 System.out.println("Fehleingabe");
                 break;
