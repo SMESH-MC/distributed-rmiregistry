@@ -73,7 +73,6 @@ public class ClientStart {
     }
 
     private void printMenue() {
-        // TODO Menueausgabe
         StringBuilder menue = new StringBuilder();
         menue.append(ROOT + ": Wurzel berechnen " + "\n");
         menue.append(INTROOT + ": Ganzzahl-Anteil einer Wurzel berechnen " + "\n");
@@ -84,7 +83,6 @@ public class ClientStart {
     }
 
     private int auswahlEinlesen() {
-        // TODO Einlesen der benutzerauswahl
         System.out.println();
         printMenue();
         return Stdin.readlnInt();
