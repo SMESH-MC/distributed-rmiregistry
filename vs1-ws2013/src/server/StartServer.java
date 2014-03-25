@@ -30,7 +30,7 @@ public class StartServer {
      * Methode zum Starten des Servers. Legt eine Registry an falls es keine gibt und registriert den Server
      */
     public void startServer() {
-       try {
+        try {
             try {
                 LocateRegistry.createRegistry(1099);
             } catch (RemoteException e) {
@@ -90,7 +90,16 @@ public class StartServer {
     
     public static void main(String[] args) throws RemoteException, NotBoundException, MalformedURLException {
         StartServer start = new StartServer();
-        start.startServer();
+        try {
+            start.startServer();
+            System.out.println("test!");
+        } 
+        catch (Exception e) {
+            if (start.server != null) {
+                System.out.println("Fehler entdeckt, starte Server neu!");
+                start.restartServer();
+            }
+        }
         
         // DEBUG
         //start.restartServer();
