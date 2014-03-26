@@ -236,7 +236,7 @@ public class ClientStart {
     /**
      * Programmroutine um Berechnung des Quadrates zu beginnen.
      * @param operand
-     * @return
+     * @return square Quadrat
      * @throws RemoteException
      * @throws ParameterException
      * @throws NotAMemberException 

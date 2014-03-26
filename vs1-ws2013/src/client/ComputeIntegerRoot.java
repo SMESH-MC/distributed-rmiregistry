@@ -20,9 +20,9 @@ public class ComputeIntegerRoot implements Task {
     private int ID;
 
     /**
-     * Konstuktor mit erwartetem Operator
+     * Konstuktor mit erwartetem Operand
      *
-     * @param operator
+     * @param operand
      * @throws ParameterException
      */
     public ComputeIntegerRoot(double operand) throws ParameterException {
