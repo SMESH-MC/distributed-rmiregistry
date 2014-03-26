@@ -1,6 +1,3 @@
-
-
-import client.ServerIP;
 import compute.Compute;
 import compute.Task;
 import java.io.BufferedReader;
