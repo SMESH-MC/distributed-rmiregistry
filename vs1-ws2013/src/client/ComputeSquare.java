@@ -3,20 +3,34 @@ package client;
 import compute.*;
 import java.rmi.RemoteException;
 
-public class ComputeSquare implements Task{
+/**
+ * Classe zum Berechnen des Quadrates
+ * @author Thorsten
+ */
+public class ComputeSquare implements Task {
 
-	private static final long serialVersionUID = 7452870205251216131L;
+    private static final long serialVersionUID = 7452870205251216131L;
 
-	private double operand;
-        private int ID;
-	
-	public ComputeSquare(double operand) throws RemoteException {
-		this.operand = operand;
-	}
+    private double operand;
+    private int ID;
 
-	public Object execute(){
-		return operand * operand;
-	}
+    /**
+     * Konstruktor mit einem Double Parameter der als Operand hinterlegt wird.
+     * @param operand
+     * @throws RemoteException 
+     */
+    public ComputeSquare(double operand) throws RemoteException {
+        this.operand = operand;
+    }
+
+    /**
+     * Berechnung des Quadrates
+     * @return Quadrat
+     */
+    @Override
+    public Object execute() {
+        return operand * operand;
+    }
 
     @Override
     public String taskName() {

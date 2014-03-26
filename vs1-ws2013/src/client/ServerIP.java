@@ -6,7 +6,7 @@
 package client;
 
 /**
- *
+ * Klasse repraesentiert ein Domaenen - Adressen Paar.
  * @author Arax
  */
 public class ServerIP {
@@ -14,6 +14,11 @@ public class ServerIP {
     private String domain;
     private String adresse;
 
+    /**
+     * Konstruktor, erwartet einen String als Domain und einen String als Adresse.
+     * @param domain
+     * @param adresse 
+     */
     public ServerIP(String domain, String adresse) {
         this.domain = domain;
         this.adresse = adresse;

@@ -12,29 +12,31 @@ import exceptions.ParameterException;
  */
 public class ComputeIntegerRoot implements Task {
 
-	private static final long serialVersionUID = 1517373870379096195L;
-	
-	private static final String OPERAND = "Operator muss groesser 0 sein!";
+    private static final long serialVersionUID = 1517373870379096195L;
 
-	private double operand;
-        private int ID;
-	
-	/**
-	 * Konstuktor mit erwartetem Operator
-	 * @param operator
-	 * @throws ParameterException 
-	 */
-	public ComputeIntegerRoot(double operand) throws ParameterException {
-		super();
-		if (operand < 0){throw new ParameterException(OPERAND);}
-		this.operand = operand;
-	}
+    private static final String OPERAND = "Operator muss groesser 0 sein!";
 
+    private double operand;
+    private int ID;
 
-	@Override
-	public Object execute() {
-		return (int) Math.sqrt(operand);
-	}
+    /**
+     * Konstuktor mit erwartetem Operator
+     *
+     * @param operator
+     * @throws ParameterException
+     */
+    public ComputeIntegerRoot(double operand) throws ParameterException {
+        super();
+        if (operand < 0) {
+            throw new ParameterException(OPERAND);
+        }
+        this.operand = operand;
+    }
+
+    @Override
+    public Object execute() {
+        return (int) Math.sqrt(operand);
+    }
 
     @Override
     public String taskName() {

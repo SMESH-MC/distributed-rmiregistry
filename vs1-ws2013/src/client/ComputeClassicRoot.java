@@ -4,7 +4,6 @@
 package client;
 
 import compute.*;
-import java.io.Serializable;
 
 import exceptions.ParameterException;
 
@@ -19,7 +18,7 @@ public class ComputeClassicRoot implements Task {
     private static final String OPERAND = "Operator muss groesser 0 sein!";
 
     private double operand;
-    
+
     private int ID;
 
     /**
