@@ -54,10 +54,13 @@ public class ClientStart {
      * Konstruktor des Programmstarters
      */
     public ClientStart() {
+        auswahl = -1;
         serverList = readDomainFile();
+    }
+
+    public void connect() {
         int size = serverList.size();
         int counter = 0;
-        auswahl = -1;
         while (comp == null && counter < size) {
             try {
                 //String name = "//127.0.0.1:1099/Compute";
@@ -144,6 +147,7 @@ public class ClientStart {
     }
 
     private Double computeRoot(double operand) throws RemoteException, ParameterException {
+        connect();
         ComputeClassicRoot task;
         task = new ComputeClassicRoot(operand);
         task.setClientID(ID);
@@ -152,6 +156,7 @@ public class ClientStart {
     }
 
     private int computeIntRoot(double operand) throws RemoteException, ParameterException {
+        connect();
         ComputeIntegerRoot task;
         task = new ComputeIntegerRoot(operand);
         task.setClientID(ID);
@@ -160,6 +165,7 @@ public class ClientStart {
     }
 
     private Double computeSquare(double operand) throws RemoteException, ParameterException {
+        connect();
         ComputeSquare task;
         task = new ComputeSquare(operand);
         task.setClientID(ID);
