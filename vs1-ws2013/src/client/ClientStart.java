@@ -84,8 +84,8 @@ public class ClientStart {
             try {
                 auswahl = auswahlEinlesen();
                 ausfuehren(auswahl);
-            } catch (RuntimeException e) {
-                System.out.println(e);
+            } catch (NullPointerException e) {
+                System.out.println("Fehler: Sie sind kein Mitglied dieser Domaene!");
             } catch (Exception e) {
                 System.out.println(e);
                 e.printStackTrace();
