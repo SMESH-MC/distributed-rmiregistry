@@ -5,10 +5,11 @@ package client;
 
 import compute.*;
 import de.htw.saarland.stl.*;
+import exceptions.NotAMemberException;
 import exceptions.ParameterException;
-import java.rmi.*;
-import java.math.*;
 import java.io.*;
+import java.math.*;
+import java.rmi.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -84,8 +85,8 @@ public class ClientStart {
             try {
                 auswahl = auswahlEinlesen();
                 ausfuehren(auswahl);
-            } catch (NullPointerException e) {
-                System.out.println("Fehler: Sie sind kein Mitglied dieser Domaene!");
+            } catch (NotAMemberException e) {
+                System.out.println(e);
             } catch (Exception e) {
                 System.out.println(e);
                 e.printStackTrace();
@@ -120,7 +121,7 @@ public class ClientStart {
         ID = Stdin.readlnInt("Bitte neue ID eigeben");
     }
 
-    private void ausfuehren(int auswahl) throws RemoteException, ParameterException {
+    private void ausfuehren(int auswahl) throws RemoteException, ParameterException, NotAMemberException {
         double operand;
         switch (auswahl) {
             case ROOT:
@@ -157,30 +158,40 @@ public class ClientStart {
                 break;
         }
     }
+    
+    private void checkNull(Task task) throws RemoteException,NotAMemberException{
+        Object obj = comp.executeTask(task);
+        if(obj == null){
+            throw new NotAMemberException("Fehler: Sie sind kein Mitglied dieser Domaene!");
+        }
+    }
 
-    private Double computeRoot(double operand) throws RemoteException, ParameterException {
+    private Double computeRoot(double operand) throws RemoteException, ParameterException, NotAMemberException {
         connect();
         ComputeClassicRoot task;
         task = new ComputeClassicRoot(operand);
         task.setClientID(ID);
+        checkNull(task);
         Double root = (double) (comp.executeTask(task));
         return root;
     }
 
-    private int computeIntRoot(double operand) throws RemoteException, ParameterException {
+    private int computeIntRoot(double operand) throws RemoteException, ParameterException, NotAMemberException {
         connect();
         ComputeIntegerRoot task;
         task = new ComputeIntegerRoot(operand);
         task.setClientID(ID);
+        checkNull(task);
         int root = (int) (comp.executeTask(task));
         return root;
     }
 
-    private Double computeSquare(double operand) throws RemoteException, ParameterException {
+    private Double computeSquare(double operand) throws RemoteException, ParameterException, NotAMemberException {
         connect();
         ComputeSquare task;
         task = new ComputeSquare(operand);
         task.setClientID(ID);
+        checkNull(task);
         Double square = (double) (comp.executeTask(task));
         return square;
     }
