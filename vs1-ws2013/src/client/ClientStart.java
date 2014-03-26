@@ -60,6 +60,9 @@ public class ClientStart {
         System.out.println("Client-ID: " + ID);
     }
 
+    /**
+     *  Methode zum Verbinden mit dem Server
+     */
     public void connect() {
         int size = serverList.size();
         int counter = 0;
@@ -77,6 +80,9 @@ public class ClientStart {
         }
     }
 
+    /**
+     *  Methode enthaelt den generellen Programmablauf
+     */
     private void start() {
         while (auswahl != BEENDEN) {
             try {
@@ -91,6 +97,9 @@ public class ClientStart {
         }
     }
 
+    /**
+     * Methode zum Ausgeben des Hauptmenues
+     */
     private void printMenue() {
         StringBuilder menue = new StringBuilder();
         menue.append(ROOT + ": Wurzel berechnen " + "\n");
@@ -103,21 +112,40 @@ public class ClientStart {
         System.out.print(menue);
     }
 
+    /**
+     * Methode zum Einlesen der Benutzereingabe
+     * @return Benutzereingabe
+     */
     private int auswahlEinlesen() {
         System.out.println();
         printMenue();
         return Stdin.readlnInt();
     }
 
+    /**
+     * Methode zum Erzeugen einer zufaelligen Client-ID
+     * @return erzeugte ID
+     */
     private int calculateID() {
         return (int) (Math.random() * (100 - 1) + 1);
 
     }
 
+    /**
+     * Methode zum Setzen einer neuen Client-ID
+     */
     private void setID() {
         ID = Stdin.readlnInt("Bitte neue ID eigeben");
     }
 
+    /**
+     * Verzweigt den Programmablauf emsprechend der Benutzereingabe fuer 
+     * die Auswahl.
+     * @param auswahl
+     * @throws RemoteException
+     * @throws ParameterException
+     * @throws NotAMemberException 
+     */
     private void ausfuehren(int auswahl) throws RemoteException, ParameterException, NotAMemberException {
         double operand;
         switch (auswahl) {
@@ -156,6 +184,13 @@ public class ClientStart {
         }
     }
     
+    /**
+     * Methode zum Ausfuehren des uebergebenen Tasks
+     * @param task
+     * @return object
+     * @throws RemoteException
+     * @throws NotAMemberException 
+     */
     private Object execute(Task task) throws RemoteException,NotAMemberException{
         Object obj = comp.executeTask(task);
         if(obj == null){
@@ -164,6 +199,14 @@ public class ClientStart {
         return obj;
     }
 
+    /**
+     * Programmroutine um Berechnung der Quadratwurzel zu beginnen.
+     * @param operand
+     * @return root
+     * @throws RemoteException
+     * @throws ParameterException
+     * @throws NotAMemberException 
+     */
     private Double computeRoot(double operand) throws RemoteException, ParameterException, NotAMemberException {
         connect();
         ComputeClassicRoot task;
@@ -173,6 +216,14 @@ public class ClientStart {
         return root;
     }
 
+    /**
+     * Programmroutine um Berechnung der ganzzahligen Quadratwurzel zu beginnen.
+     * @param operand
+     * @return root
+     * @throws RemoteException
+     * @throws ParameterException
+     * @throws NotAMemberException 
+     */
     private int computeIntRoot(double operand) throws RemoteException, ParameterException, NotAMemberException {
         connect();
         ComputeIntegerRoot task;
@@ -182,6 +233,14 @@ public class ClientStart {
         return root;
     }
 
+    /**
+     * Programmroutine um Berechnung des Quadrates zu beginnen.
+     * @param operand
+     * @return
+     * @throws RemoteException
+     * @throws ParameterException
+     * @throws NotAMemberException 
+     */
     private Double computeSquare(double operand) throws RemoteException, ParameterException, NotAMemberException {
         connect();
         ComputeSquare task;
@@ -191,6 +250,10 @@ public class ClientStart {
         return square;
     }
 
+    /**
+     * Methode zum Einlesen der Domaenenkomfiguration.
+     * @return Serverliste
+     */
     private ArrayList readDomainFile() {
         String fileName = "domain.ini";
         String[] lineArray;
