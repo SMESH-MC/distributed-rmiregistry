@@ -93,7 +93,6 @@ public class StartServer {
         StartServer start = new StartServer();
         try {
             start.startServer();
-            System.out.println("test!");
         } 
         catch (Exception e) {
             if (start.server != null) {

@@ -8,10 +8,8 @@ import de.htw.saarland.stl.*;
 import exceptions.NotAMemberException;
 import exceptions.ParameterException;
 import java.io.*;
-import java.math.*;
 import java.rmi.*;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Klasse ClientStart dient als Startpunkt fuer das Clientprogramm.
@@ -70,7 +68,6 @@ public class ClientStart {
                 //String name = "//127.0.0.1:1099/Compute";
                 server = (ServerIP) serverList.get(counter);
                 String serverAdress = server.getAdresse();
-                System.out.println(serverAdress);
                 String name = "//" + serverAdress + "/Compute";
                 comp = (Compute) Naming.lookup(name);
             } catch (Exception ex) {
@@ -159,11 +156,12 @@ public class ClientStart {
         }
     }
     
-    private void checkNull(Task task) throws RemoteException,NotAMemberException{
+    private Object execute(Task task) throws RemoteException,NotAMemberException{
         Object obj = comp.executeTask(task);
         if(obj == null){
             throw new NotAMemberException("Fehler: Sie sind kein Mitglied dieser Domaene!");
         }
+        return obj;
     }
 
     private Double computeRoot(double operand) throws RemoteException, ParameterException, NotAMemberException {
@@ -171,8 +169,7 @@ public class ClientStart {
         ComputeClassicRoot task;
         task = new ComputeClassicRoot(operand);
         task.setClientID(ID);
-        checkNull(task);
-        Double root = (double) (comp.executeTask(task));
+        Double root = (double) execute(task);
         return root;
     }
 
@@ -181,8 +178,7 @@ public class ClientStart {
         ComputeIntegerRoot task;
         task = new ComputeIntegerRoot(operand);
         task.setClientID(ID);
-        checkNull(task);
-        int root = (int) (comp.executeTask(task));
+        int root = (int) execute(task);
         return root;
     }
 
@@ -191,13 +187,11 @@ public class ClientStart {
         ComputeSquare task;
         task = new ComputeSquare(operand);
         task.setClientID(ID);
-        checkNull(task);
-        Double square = (double) (comp.executeTask(task));
+        Double square = (double) execute(task);
         return square;
     }
 
     private ArrayList readDomainFile() {
-        System.out.println(new File("").getAbsolutePath());
         String fileName = "domain.ini";
         String[] lineArray;
         ArrayList serverList = new ArrayList();
