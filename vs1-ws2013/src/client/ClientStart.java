@@ -27,13 +27,15 @@ public class ClientStart {
     private static final int INTROOT = 2;
     private static final int SQUARE = 3;
     private static final int PRINT_DOMAIN = 4;
-    private static int ID;
+    private static final int SET_ID = 5;
+
     //--------------Stringkonstanten
     //--------------Variablen
     private int auswahl;
     private Compute comp;
     private ArrayList serverList;
     private ServerIP server;
+    private int ID;
 
     /**
      * Startpunkt fuer den Client.
@@ -44,8 +46,7 @@ public class ClientStart {
         /*	if (System.getSecurityManager() == null) {
          System.setSecurityManager(new SecurityManager());
          }*/
-        ID = calculateID();
-        System.out.println("Client-ID: " + ID);
+
         client = new ClientStart();
         client.start();
     }
@@ -56,6 +57,8 @@ public class ClientStart {
     public ClientStart() {
         auswahl = -1;
         serverList = readDomainFile();
+        ID = calculateID();
+        System.out.println("Client-ID: " + ID);
     }
 
     public void connect() {
@@ -97,6 +100,7 @@ public class ClientStart {
         menue.append(SQUARE + ": Quadrat berechnen " + "\n");
         menue.append(BEENDEN + ": Beenden " + "\n");
         menue.append(PRINT_DOMAIN + ": Domäne anzeigen " + "\n");
+        menue.append(SET_ID + ": ID ändern " + "\n");
         menue.append(" -> ");
         System.out.print(menue);
     }
@@ -107,9 +111,13 @@ public class ClientStart {
         return Stdin.readlnInt();
     }
 
-    private static int calculateID() {
+    private int calculateID() {
         return (int) (Math.random() * (100 - 1) + 1);
 
+    }
+
+    private void setID() {
+        ID = Stdin.readlnInt("Bitte neue ID eigeben");
     }
 
     private void ausfuehren(int auswahl) throws RemoteException, ParameterException {
@@ -139,6 +147,10 @@ public class ClientStart {
             case PRINT_DOMAIN:
                 System.out.println("Client greift auf folgende Domäne zu: \n"
                         + server.getDomain());
+                break;
+            case SET_ID:
+                setID();
+                System.out.println("Client-ID: "+ID);
                 break;
             default:
                 System.out.println("Fehleingabe");
