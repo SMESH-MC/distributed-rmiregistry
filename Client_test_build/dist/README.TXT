@@ -1,0 +1,1 @@
+java -jar -Djava.security.manager -Djava.security.policy=mypol.policy Client_test.jar
