@@ -1,3 +1,5 @@
+package compute;
+
 /**
  * Task zur Berechnung der Quadratwurzel
  */
@@ -5,7 +7,7 @@
 
 import compute.*;
 
-import exceptions.ParameterException;
+import compute.exceptions.ParameterException;
 
 /**
  * @author derb

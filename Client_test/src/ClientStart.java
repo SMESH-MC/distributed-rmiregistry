@@ -5,8 +5,8 @@
 
 import compute.*;
 import de.htw.saarland.stl.*;
-import exceptions.NotAMemberException;
-import exceptions.ParameterException;
+import compute.exceptions.NotAMemberException;
+import compute.exceptions.ParameterException;
 import java.io.*;
 import java.rmi.*;
 import java.util.ArrayList;

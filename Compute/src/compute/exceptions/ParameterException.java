@@ -1,4 +1,4 @@
-package exceptions;
+package compute.exceptions;
 
 public class ParameterException extends Exception {
 
